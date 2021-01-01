@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: darkslateblue;
+  padding: 0 10px;
+}
+
+main {
+  margin: 50px auto;
+  padding: 0 50px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-family: "Lato", sans-serif;
+  min-height: 500px;
+}
+
+.general-info {
+  padding: 10px;
+  flex: 1;
+  position: relative;
+  background-color: white;
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid rgba(71, 61, 139, 0.089);
+  .text-view,
+  .form-view {
+    display: flex;
+    flex-direction: column;
+  }
+
+  p {
+    font-weight: 300;
+    padding: 5px;
+    margin: 10px 0;
+  }
+
+  .form-view {
+    margin-top: 20px;
+    label {
+      margin: 10px 0;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 5px;
+      border: 1px solid rgba(71, 61, 139, 0.2);
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      margin: 40px auto;
+      background-color: rgb(13, 175, 13);
+      color: white;
+      border: none;
+      padding: 10px 0;
+      width: 140px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.details {
+  flex: 3;
+  padding: 10px;
+  border-radius: 0 10px 10px 0;
+
+  .job-fields,
+  .education-fields {
+    position: relative;
+  }
+
+  .form-view {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    min-width: 400px;
+    margin: 10px auto;
+    label {
+      margin: 10px 0;
+    }
+
+    textarea,
+    input[type="text"] {
+      padding: 5px;
+      border: 1px solid rgba(71, 61, 139, 0.2);
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      margin: 30px auto;
+      background-color: rgb(13, 175, 13);
+      color: white;
+      border: none;
+      padding: 10px 0;
+      width: 140px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .cancel {
+    width: 80px;
+    margin: 0 auto;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .education-experience {
+    padding: 20px;
+    position: relative;
+    h2 {
+      border-bottom: 1px solid rgba(71, 61, 139, 0.089);
+      width: fit-content;
+      font-size: 18px;
+    }
+    .edit-experience {
+      position: absolute;
+      right: 10px;
+      top: 25%;
+    }
+    .delete-experience {
+      position: absolute;
+      top: 25%;
+      right: 40px;
+    }
+  }
+}
+
+.edit-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.section-title {
+  padding: 10px;
+  border-bottom: 1px solid rgba(71, 61, 139, 0.089);
+}
+
+.add-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}

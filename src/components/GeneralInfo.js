@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import editImage from '../styles/edit.svg'
 
 
 class GeneralInfo extends Component {
@@ -36,17 +37,20 @@ class GeneralInfo extends Component {
     }
 
     formView(info) {
-        return <form>
+        return <form className = "form-view">
+                    <label htmlFor="name">Name</label>
                     <input type="text" 
                            value = {info.name} 
                            name = "name"
                            onChange = {this.handleChange}
                            />
+                    <label htmlFor="email">Email</label>
                     <input type="email" 
                            value = {info.email} 
                            name = "email"
                            onChange = {this.handleChange}
                            />
+                    <label htmlFor="phone">Phone</label>
                     <input type="text" 
                            value = {info.phone} 
                            name = "phone"
@@ -60,11 +64,15 @@ class GeneralInfo extends Component {
     }
 
     textView(info) {
-        return <div className = "general-info">
+        return <div className = "text-view">
                     <p>Name: <span>{info.name}</span></p>
                     <p>Email: <span>{info.email}</span></p>
                     <p>Phone: <span>{info.phone}</span></p>
-                    <button onClick = { () => this.setState({editable: true})}>Edit</button>
+                    <img 
+                        onClick = { () => this.setState({editable: true})}
+                        className = "edit-button"
+                        src = {editImage}/>
+
                </div>
     }
 
@@ -75,7 +83,8 @@ class GeneralInfo extends Component {
     render() {
         const { info } = this.state;
         return (
-            <div>
+            <div className = "general-info">
+                <h2 className="section-title">General Info</h2>
                 {this.state.editable ? this.formView(info) : this.textView(info)}
             </div>
         );

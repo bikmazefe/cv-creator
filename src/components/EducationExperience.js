@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import edit from '../styles/edit.svg'
+import trash from '../styles/trash-2.svg'
+import cancel from '../styles/x-circle.svg'
 
 class EducationExperience extends Component {
     constructor(props) {
@@ -42,24 +44,30 @@ class EducationExperience extends Component {
     }
 
     formView(){
-        return <form onSubmit = {this.handleSubmit}>
+        return <form className = "form-view"onSubmit = {this.handleSubmit}>
+                <label htmlFor="schoolName">School Name:</label>
                 <input type="text" 
                          name = "schoolName"
                          value = {this.state.experience.schoolName}
                          onChange = {this.handleChange}
                          />
+                  <label htmlFor="titleOfStudy">Title of Study:</label>
                   <input type="text" 
                          name = "titleOfStudy"
                          value = {this.state.experience.titleOfStudy}
                          onChange = {this.handleChange}
                          />
+                <label htmlFor="dateOfStudy">Date of Study:</label>
                   <input type="text" 
                          name = "dateOfStudy"
                          value = {this.state.experience.dateOfStudy}
                          onChange = {this.handleChange}
                          />
                  <input type="submit" value="Save"/>
-                 <button onClick = {this.toggleForm}>Cancel</button>
+                 <button className = "cancel" onClick = {this.toggleForm}>
+                     <img src={cancel} alt=""/>
+                     Cancel
+                </button>
                </form>
     }
 
@@ -67,17 +75,19 @@ class EducationExperience extends Component {
 
         return <div className = "education-experience" >
                     <h2>{this.state.experience.schoolName}</h2>
-                    <p>{this.state.experience.titleOfStudy}</p>
-                    <p>{this.state.experience.dateOfStudy}</p>
-                    <button onClick = {this.toggleForm}>
-                    Edit
-                    </button>
-                    <button 
+                    <p>{this.state.experience.titleOfStudy} - {this.state.experience.dateOfStudy}</p>
+                    <img 
+                        onClick = {this.toggleForm}
+                        src = {edit}
+                        className = "edit-experience"
+                    />
+
+                    <img 
                         onClick = {() => 
                             this.props.handleDelete(this.props.index)}
-                    >
-                    Delete
-                    </button>
+                        src = {trash}
+                        className = "delete-experience"
+                    />
                 </div>
     }
 

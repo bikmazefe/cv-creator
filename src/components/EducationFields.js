@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EducationExperience from './EducationExperience'
+import plus from '../styles/plus.svg';
 
 class Education extends Component {
     constructor(){
@@ -27,17 +28,20 @@ class Education extends Component {
     }
 
     newForm(){
-        return <form onSubmit = {this.handleSubmit}>
+        return <form className = "form-view" onSubmit = {this.handleSubmit}>
+                  <label htmlFor="schoolName">School Name:</label>
                   <input type="text" 
                          name = "schoolName"
                          value = {this.state.newExperience.schoolName}
                          onChange = {this.handleChange}
                          />
+                  <label htmlFor="titleOfStudy">Title of Study:</label>
                   <input type="text" 
                          name = "titleOfStudy"
                          value = {this.state.newExperience.titleOfStudy}
                          onChange = {this.handleChange}
                          />
+                  <label htmlFor="schoolName">Class:</label>
                   <input type="text" 
                          name = "dateOfStudy"
                          value = {this.state.newExperience.dateOfStudy}
@@ -87,8 +91,13 @@ class Education extends Component {
 
     render() {
         return (
-            <div>
-                <button onClick = {this.toggleForm}>Add Education</button>
+            <div className = "education-fields">
+                <h2 className="section-title">Education</h2>
+                <img 
+                    onClick = {this.toggleForm} 
+                    className = "add-button"
+                    src = {plus}
+                />
                 {this.state.formVisible ? this.newForm() : ""}
                 {this.state.experiences.map((item, index) => {
                     return <EducationExperience 
