@@ -19,6 +19,7 @@ class EducationExperience extends Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
         this.formView = this.formView.bind(this);
         this.textView = this.textView.bind(this);
     }
@@ -39,6 +40,17 @@ class EducationExperience extends Component {
             experience: {
                 ...this.state.experience,
                 [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    handleCancel() {
+        this.toggleForm();
+        this.setState({
+            experience: {
+                schoolName: this.props.data.schoolName,
+                titleOfStudy: this.props.data.titleOfStudy,
+                dateOfStudy: this.props.data.dateOfStudy
             }
         })
     }
@@ -64,7 +76,7 @@ class EducationExperience extends Component {
                          onChange = {this.handleChange}
                          />
                  <input type="submit" value="Save"/>
-                 <button className = "cancel" onClick = {this.toggleForm}>
+                 <button className = "cancel" onClick = {this.handleCancel}>
                      <img src={cancel} alt=""/>
                      Cancel
                 </button>

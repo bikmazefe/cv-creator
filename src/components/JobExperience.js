@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import edit from '../styles/edit.svg'
+import trash from '../styles/trash-2.svg'
+import cancel from '../styles/x-circle.svg'
 
 
 class JobExperience extends Component {
@@ -19,6 +22,7 @@ class JobExperience extends Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
         this.formView = this.formView.bind(this);
         this.textView = this.textView.bind(this);
     }
@@ -43,35 +47,52 @@ class JobExperience extends Component {
         })
     }
 
+    handleCancel() {
+        this.toggleForm();
+        this.setState({
+            experience:  {
+                companyName: this.props.data.companyName,
+                positionTitle: this.props.data.positionTitle,
+                description: this.props.data.description,
+                startDate: this.props.data.startDate,
+                endDate: this.props.data.endDate
+            }
+        })
+    }
+
     formView(){
         return <form onSubmit = {this.handleSubmit}>
                   <input type="text" 
                          name = "companyName"
-                         value = {this.state.newExperience.companyName}
+                         value = {this.state.experience.companyName}
                          onChange = {this.handleChange}
+                         required
                          />
                   <input type="text" 
                          name = "positionTitle"
-                         value = {this.state.newExperience.positionTitle}
+                         value = {this.state.experience.positionTitle}
                          onChange = {this.handleChange}
+                         required
                          />
                   <textarea
                          name = "description"
-                         value = {this.state.newExperience.dateOfStudy}
+                         value = {this.state.experience.dateOfStudy}
                          onChange = {this.handleChange}
                          />
                  <input type="text" 
                          name = "startDate"
-                         value = {this.state.newExperience.startDate}
+                         value = {this.state.experience.startDate}
                          onChange = {this.handleChange}
+                         required
+                         
                          />
                 <input type="text" 
                          name = "endDate"
-                         value = {this.state.newExperience.endDate}
+                         value = {this.state.experience.endDate}
                          onChange = {this.handleChange}
                          />
                 <input type="submit" value="Edit"/>
-                 <button onClick = {this.toggleForm}>Cancel</button>
+                 <button onClick = {this.handleCancel}>Cancel</button>
                </form>
     }
 
@@ -79,19 +100,19 @@ class JobExperience extends Component {
 
         return <div className = "education-experience" >
                     <h2>{this.state.experience.companyName}</h2>
-                    <p>{this.state.experience.positionTitle}</p>
-                    <p>{this.state.experience.description}</p>
-                    <p>{this.state.experience.startDate}</p>
-                    <p>{this.state.experience.endDate}</p>
-                    <button onClick = {this.toggleForm}>
-                    Edit
-                    </button>
-                    <button 
+                    <p>{this.state.experience.positionTitle} | {this.state.experience.startDate} - {this.state.experience.endDate || "..."}</p>
+                    <p className = "description">{this.state.experience.description}</p>
+                    <img 
+                        onClick = {this.toggleForm}
+                        src = {edit}
+                        className = "edit-experience"
+                    />
+                    <img 
                         onClick = {() => 
                             this.props.handleDelete(this.props.index)}
-                    >
-                    Delete
-                    </button>
+                        src = {trash}
+                        className = "delete-experience"
+                    />
                 </div>
     }
 

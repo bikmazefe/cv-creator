@@ -3,7 +3,9 @@ import GeneralInfo from './components/GeneralInfo'
 import EducationFields from './components/EducationFields'
 import JobFields from './components/JobFields'
 
+
 function App() {
+
   return (
     <div className="App">
         <main>

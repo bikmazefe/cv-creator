@@ -34,18 +34,21 @@ class Education extends Component {
                          name = "schoolName"
                          value = {this.state.newExperience.schoolName}
                          onChange = {this.handleChange}
+                         required
                          />
                   <label htmlFor="titleOfStudy">Title of Study:</label>
                   <input type="text" 
                          name = "titleOfStudy"
                          value = {this.state.newExperience.titleOfStudy}
                          onChange = {this.handleChange}
+                         required
                          />
                   <label htmlFor="schoolName">Class:</label>
                   <input type="text" 
                          name = "dateOfStudy"
                          value = {this.state.newExperience.dateOfStudy}
                          onChange = {this.handleChange}
+                         required
                          />
                  <input type="submit" value="Create"/>
                </form>
