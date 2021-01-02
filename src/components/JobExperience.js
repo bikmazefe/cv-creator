@@ -1,129 +1,117 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import edit from '../styles/edit.svg'
 import trash from '../styles/trash-2.svg'
 import cancel from '../styles/x-circle.svg'
 
 
-class JobExperience extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            editable: false,
-            experience: {
-                companyName: this.props.data.companyName,
-                positionTitle: this.props.data.positionTitle,
-                description: this.props.data.description,
-                startDate: this.props.data.startDate,
-                endDate: this.props.data.endDate
-            }
-        }
+const JobExperience = (props) =>  {
 
-        this.toggleForm = this.toggleForm.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
-        this.formView = this.formView.bind(this);
-        this.textView = this.textView.bind(this);
+        const [editable, setEditable] = useState(false);
+        const [experience, setExperience] = useState({
+                                                companyName: props.data.companyName,
+                                                positionTitle: props.data.positionTitle,
+                                                description: props.data.description,
+                                                startDate: props.data.startDate,
+                                                endDate: props.data.endDate
+                                            })
+
+
+    const toggleForm = () => {
+        setEditable(!editable);
     }
 
-    toggleForm() {
-        this.setState({editable: !this.state.editable})
-    }
-
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let item = {...this.state.experience};
-        this.props.handleEdit(this.props.index, item);
-        this.toggleForm();
+        let item = {...experience};
+        props.handleEdit(props.index, item);
+        toggleForm();
     }
 
-    handleChange(e) {
-        this.setState({
-            experience: {
-                ...this.state.experience,
-                [e.target.name]: e.target.value
-            }
+    const handleChange = (e) => {
+        setExperience({
+            ...experience,
+            [e.target.name]: e.target.value
         })
     }
 
-    handleCancel() {
-        this.toggleForm();
-        this.setState({
-            experience:  {
-                companyName: this.props.data.companyName,
-                positionTitle: this.props.data.positionTitle,
-                description: this.props.data.description,
-                startDate: this.props.data.startDate,
-                endDate: this.props.data.endDate
-            }
+    const handleCancel = () => {
+        toggleForm();
+        setExperience({
+            companyName: props.data.companyName,
+            positionTitle: props.data.positionTitle,
+            description: props.data.description,
+            startDate: props.data.startDate,
+            endDate: props.data.endDate
         })
     }
 
-    formView(){
-        return <form onSubmit = {this.handleSubmit}>
+    const formView = () => {
+        return <form onSubmit = {handleSubmit}>
                   <input type="text" 
                          name = "companyName"
-                         value = {this.state.experience.companyName}
-                         onChange = {this.handleChange}
+                         value = {experience.companyName}
+                         onChange = {handleChange}
                          required
                          />
                   <input type="text" 
                          name = "positionTitle"
-                         value = {this.state.experience.positionTitle}
-                         onChange = {this.handleChange}
+                         value = {experience.positionTitle}
+                         onChange = {handleChange}
                          required
                          />
                   <textarea
                          name = "description"
-                         value = {this.state.experience.dateOfStudy}
-                         onChange = {this.handleChange}
+                         value = {experience.dateOfStudy}
+                         onChange = {handleChange}
                          />
                  <input type="text" 
                          name = "startDate"
-                         value = {this.state.experience.startDate}
-                         onChange = {this.handleChange}
+                         value = {experience.startDate}
+                         onChange = {handleChange}
                          required
                          
                          />
                 <input type="text" 
                          name = "endDate"
-                         value = {this.state.experience.endDate}
-                         onChange = {this.handleChange}
+                         value = {experience.endDate}
+                         onChange = {handleChange}
                          />
                 <input type="submit" value="Edit"/>
-                 <button onClick = {this.handleCancel}>Cancel</button>
+                <img 
+                    onClick = {handleCancel}
+                    src = {cancel}
+                    alt = ""/>    
                </form>
     }
 
-    textView(){
+    const textView = () => {
 
         return <div className = "education-experience" >
-                    <h2>{this.state.experience.companyName}</h2>
-                    <p>{this.state.experience.positionTitle} | {this.state.experience.startDate} - {this.state.experience.endDate || "..."}</p>
-                    <p className = "description">{this.state.experience.description}</p>
+                    <h2>{experience.companyName}</h2>
+                    <p>{experience.positionTitle} | {experience.startDate} - {experience.endDate || "..."}</p>
+                    <p className = "description">{experience.description}</p>
                     <img 
-                        onClick = {this.toggleForm}
+                        onClick = {toggleForm}
                         src = {edit}
                         className = "edit-experience"
+                        alt = ""
                     />
                     <img 
                         onClick = {() => 
-                            this.props.handleDelete(this.props.index)}
+                            props.handleDelete(props.index)}
                         src = {trash}
                         className = "delete-experience"
+                        alt = ""
                     />
                 </div>
     }
 
 
-    render() {
-        return (
-           <div className="">
-               {this.state.editable ? this.formView() : this.textView()}
-           </div> 
-        );
-    }
+    return (
+        <div className="">
+            {editable ? formView() : textView()}
+        </div> 
+    );
 }
 
 export default JobExperience;

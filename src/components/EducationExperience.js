@@ -1,116 +1,100 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import edit from '../styles/edit.svg'
 import trash from '../styles/trash-2.svg'
 import cancel from '../styles/x-circle.svg'
 
-class EducationExperience extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            editable: false,
-            experience: {
-                schoolName: this.props.data.schoolName,
-                titleOfStudy: this.props.data.titleOfStudy,
-                dateOfStudy: this.props.data.dateOfStudy
-            }
-        }
+const EducationExperience = (props) => {
 
-        this.toggleForm = this.toggleForm.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
-        this.formView = this.formView.bind(this);
-        this.textView = this.textView.bind(this);
+        const [editable, setEditable] = useState(false);
+        const [experience, setExperience] = useState({
+                                                schoolName: props.data.schoolName,
+                                                titleOfStudy: props.data.titleOfStudy,
+                                                dateOfStudy: props.data.dateOfStudy
+                                            });
+
+    const toggleForm = () => {
+        setEditable(!editable);
     }
 
-    toggleForm() {
-        this.setState({editable: !this.state.editable})
-    }
-
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let item = {...this.state.experience};
-        this.props.handleEdit(this.props.index, item);
-        this.toggleForm();
+        let item = {...experience};
+        props.handleEdit(props.index, item);
+        toggleForm();
     }
 
-    handleChange(e) {
-        this.setState({
-            experience: {
-                ...this.state.experience,
-                [e.target.name]: e.target.value
-            }
+    const handleChange = (e) => {
+        setExperience({
+            ...experience,
+            [e.target.name]: e.target.value
         })
     }
 
-    handleCancel() {
-        this.toggleForm();
-        this.setState({
-            experience: {
-                schoolName: this.props.data.schoolName,
-                titleOfStudy: this.props.data.titleOfStudy,
-                dateOfStudy: this.props.data.dateOfStudy
-            }
+    const handleCancel = () => {
+        toggleForm();
+        setExperience({
+            schoolName: props.data.schoolName,
+            titleOfStudy: props.data.titleOfStudy,
+            dateOfStudy: props.data.dateOfStudy
         })
     }
 
-    formView(){
-        return <form className = "form-view"onSubmit = {this.handleSubmit}>
+   const formView = () => {
+        return <form className = "form-view"onSubmit = {handleSubmit}>
                 <label htmlFor="schoolName">School Name:</label>
                 <input type="text" 
                          name = "schoolName"
-                         value = {this.state.experience.schoolName}
-                         onChange = {this.handleChange}
+                         value = {experience.schoolName}
+                         onChange = {handleChange}
                          />
                   <label htmlFor="titleOfStudy">Title of Study:</label>
                   <input type="text" 
                          name = "titleOfStudy"
-                         value = {this.state.experience.titleOfStudy}
-                         onChange = {this.handleChange}
+                         value = {experience.titleOfStudy}
+                         onChange = {handleChange}
                          />
                 <label htmlFor="dateOfStudy">Date of Study:</label>
                   <input type="text" 
                          name = "dateOfStudy"
-                         value = {this.state.experience.dateOfStudy}
-                         onChange = {this.handleChange}
+                         value = {experience.dateOfStudy}
+                         onChange = {handleChange}
                          />
                  <input type="submit" value="Save"/>
-                 <button className = "cancel" onClick = {this.handleCancel}>
+                 <button className = "cancel" onClick = {handleCancel}>
                      <img src={cancel} alt=""/>
                      Cancel
                 </button>
                </form>
     }
 
-    textView(){
+    const textView = () => {
 
         return <div className = "education-experience" >
-                    <h2>{this.state.experience.schoolName}</h2>
-                    <p>{this.state.experience.titleOfStudy} - {this.state.experience.dateOfStudy}</p>
+                    <h2>{experience.schoolName}</h2>
+                    <p>{experience.titleOfStudy} - {experience.dateOfStudy}</p>
                     <img 
-                        onClick = {this.toggleForm}
+                        onClick = {toggleForm}
                         src = {edit}
                         className = "edit-experience"
+                        alt = ""
                     />
 
                     <img 
                         onClick = {() => 
-                            this.props.handleDelete(this.props.index)}
+                            props.handleDelete(props.index)}
                         src = {trash}
                         className = "delete-experience"
+                        alt = ""
                     />
                 </div>
     }
 
 
-    render() {
-        return (
-           <div className="">
-               {this.state.editable ? this.formView() : this.textView()}
-           </div> 
-        );
-    }
+    return (
+        <div className="">
+            {editable ? formView() : textView()}
+        </div> 
+    );
 }
 
 export default EducationExperience;
