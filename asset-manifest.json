@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/cv-creator/static/css/main.12030be3.chunk.css",
+    "main.js": "/cv-creator/static/js/main.dc6b8dd1.chunk.js",
+    "main.js.map": "/cv-creator/static/js/main.dc6b8dd1.chunk.js.map",
+    "runtime-main.js": "/cv-creator/static/js/runtime-main.581e5ba6.js",
+    "runtime-main.js.map": "/cv-creator/static/js/runtime-main.581e5ba6.js.map",
+    "static/js/2.be7bf2b7.chunk.js": "/cv-creator/static/js/2.be7bf2b7.chunk.js",
+    "static/js/2.be7bf2b7.chunk.js.map": "/cv-creator/static/js/2.be7bf2b7.chunk.js.map",
+    "index.html": "/cv-creator/index.html",
+    "static/css/main.12030be3.chunk.css.map": "/cv-creator/static/css/main.12030be3.chunk.css.map",
+    "static/js/2.be7bf2b7.chunk.js.LICENSE.txt": "/cv-creator/static/js/2.be7bf2b7.chunk.js.LICENSE.txt",
+    "static/media/edit.2b69c19a.svg": "/cv-creator/static/media/edit.2b69c19a.svg",
+    "static/media/plus.9884e6b0.svg": "/cv-creator/static/media/plus.9884e6b0.svg",
+    "static/media/trash-2.815ce405.svg": "/cv-creator/static/media/trash-2.815ce405.svg",
+    "static/media/x-circle.8da50ca8.svg": "/cv-creator/static/media/x-circle.8da50ca8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.581e5ba6.js",
+    "static/js/2.be7bf2b7.chunk.js",
+    "static/css/main.12030be3.chunk.css",
+    "static/js/main.dc6b8dd1.chunk.js"
+  ]
+}
